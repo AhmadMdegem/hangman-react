@@ -46,7 +46,8 @@ export class App extends Component {
         Y: false,
         Z: false
       },
-      score: 100
+      score: 100,
+      start: false
     }
   }
 
@@ -64,7 +65,7 @@ export class App extends Component {
   changeStatus(letter) {
     if (this.state.solution.word.includes(letter)) {
       let letterStatus = this.state.letterStatus
-      letterStatus[letter] = true
+      letterStatus[letter] = !this.state.letterStatus[letter]
       this.setState({
         letterStatus
       })
@@ -82,23 +83,67 @@ export class App extends Component {
       return 0
     return false
   }
+  reStarGame = () => {
+    let letterStatus = this.state.letterStatus
+    for (let item in letterStatus)
+      letterStatus[item] = false
+
+    this.setState({
+      score: 100,
+      letterStatus: letterStatus
+    })
+    this.startGame()
+  }
+  setWord = (e) => {
+    let sol = this.state.solution
+    sol.word = e.target.value
+    sol.word = sol.word.toUpperCase()
+    this.setState({
+      solution: sol
+    })
+  }
+  setHint = (e) => {
+    let sol = this.state.solution
+    sol.hint = e.target.value
+    
+    this.setState({
+      solution: sol
+    })
+  }
+  startGame = () => {
+    this.setState({
+      start: !this.state.start
+    })
+  }
   render() {
+    if (!this.state.start)
+      return (
+        <div className="App">
+          <h2 className='start-game'>Enter Word</h2>
+          <form onSubmit={this.startGame}>
+            <input type="text" onChange={this.setWord} placeholder="word"/><br></br>
+            <input type="text" onChange={this.setHint} placeholder="hint"/><br></br>
+            <button >submit</button>
+          </form>
+        </div>
+      )
     if (this.endGame() === 1)
       return (
-        <div className="App"><Endgame msg='Congratulations'/></div>)
-    else if(this.endGame() === 0)
-    return (
-      <div className="App"><Endgame msg='Game Over'/></div>)
+        <div className="App"><Endgame msg='Congratulations' />
+          <button onClick={this.reStarGame}>Re Start Game</button>
+        </div>)
+    else if (this.endGame() === 0)
+      return (
+        <div className="App"><Endgame msg='Game Over' />
+          <button onClick={this.reStarGame}>Re Start Game</button>
+        </div>)
     return (
       <div className="App">
-
-        <Score score={this.state.score} />
-        <Solution letterStatus={this.state.letterStatus} solution={this.state.solution} />
-        <div>
-
+        <div className='score'><Score score={this.state.score} /></div>
+        <div className='sol'><Solution letterStatus={this.state.letterStatus} solution={this.state.solution} /></div>
+        <h3>available Letters</h3>
+        <div className='letters'>
           <Letters letterStatus={this.state.letterStatus} changeStatus={this.changeStatus} />
-
-
         </div>
       </div>
     );

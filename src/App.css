@@ -36,15 +36,69 @@
     transform: rotate(360deg);
   }
 }
-.selected{
-  text-decoration: line-through;
-}
+
 .low-score{
   color: red;
+}
+input {
+  width: 200px;
+  padding: 6px;
+  margin: 5px;
+}
+.start-game{
+  color: red;
+
 }
 .medium-score{
   color: blue;
 }
 .high-score{
   color: sandybrown;
+}
+button{
+  height: 50px;
+  border-radius: 8px;
+  background-color: #f44336;
+  font-size: 20px;
+}
+.container-letters {
+  display: grid;
+  grid-template-columns: repeat(15,auto);
+  padding: 10px;
+}
+.grid-letter {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+.selected{
+  text-decoration: line-through;
+  background-color: red;
+}
+.letters{
+  margin: 10px;
+}
+.score{
+  height: 100px;
+  font-size: 30px;
+  text-align: center;
+}
+.sol{
+  height: 200px;
+}
+.hint{
+  color: #f44336;
+  font-size: 25px;
+  text-align: center;
+  margin: 10px;
+}
+h3{
+  color: #f44336;
+}
+.end-game{
+  font-size: 50px;
+  color: #f44336;
+  margin: 200px;
 }

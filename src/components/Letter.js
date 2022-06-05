@@ -24,10 +24,10 @@ export class Letter extends Component {
     render() {
         if (this.state.select)
             return (
-                <span className="selected" >{this.props.char} </span>
+                <span className="selected grid-letter" >{this.props.char} </span>
             )
         return (
-            <span onClick={this.selectLetter} >{this.props.char} </span>
+            <span onClick={this.selectLetter} className='grid-letter'>{this.props.char} </span>
         )
     }
 }

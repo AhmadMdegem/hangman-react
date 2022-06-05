@@ -13,7 +13,7 @@ export class Letters extends Component {
   
     render() {
         return (
-            <div>
+            <div className="container-letters">
                 {Object.keys(this.props.letterStatus).map(
                     c => <Letter char={c} changeStatus={this.changeStatus}/>)}
             </div>

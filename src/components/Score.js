@@ -25,7 +25,8 @@ export class Score extends Component {
         
         return (
 
-            <div className={this.changeLevel()} >{this.props.score}
+            <div className={this.changeLevel()} >
+                Your Score is : {this.props.score}
             </div>
         )
     }
